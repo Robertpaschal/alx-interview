@@ -64,7 +64,7 @@ def main():
         """
         print_stats(total_size, status_counts)
         sys.exit(0)
-        
+
     signal.signal(signal.SIGINT, signal_handler)
 
     try:
