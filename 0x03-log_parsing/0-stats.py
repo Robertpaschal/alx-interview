@@ -78,10 +78,11 @@ def main():
                 line_count = 0
     except Exception as e:
         pass
-    
+
     finally:
         print_stats(total_size, status_counts)
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
