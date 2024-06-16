@@ -83,7 +83,9 @@ def main():
         sys.exit(0)
     except Exception as e:
         pass
-    
+    finally:
+        print_stats(total_size, status_counts)
+
 
 if __name__ == "__main__":
     main()
