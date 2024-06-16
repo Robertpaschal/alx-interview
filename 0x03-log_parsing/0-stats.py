@@ -80,8 +80,6 @@ def main():
                 print_stats(total_size, status_counts)
     except Exception as e:
         pass
-    finally:
-        print_stats(total_size, status_counts)
 
 
 if __name__ == "__main__":
