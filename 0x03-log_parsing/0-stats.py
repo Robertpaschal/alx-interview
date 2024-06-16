@@ -62,9 +62,6 @@ def main():
         - sig: Signal number.
         - frame: Current stack frame.
         """
-        print_stats(total_size, status_counts)
-        sys.exit(0)
-
     signal.signal(signal.SIGINT, signal_handler)
 
     try:
@@ -79,13 +76,12 @@ def main():
             if line_count % 10 == 0:
                 print_stats(total_size, status_counts)
                 line_count = 0
-
-    except KeyboardInterrupt:
-        print_stats(total_size, status_counts)
-        sys.exit(0)
     except Exception as e:
         pass
-
+    
+    finally:
+        print_stats(total_size, status_counts)
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
