@@ -13,8 +13,8 @@ def is_safe(board, row, col, N):
     for i in range(row):
         if board[i][col] == 1:
             return False
-    
-    #check upper left diagonal
+
+    # check upper left diagonal
     i, j = row, col
     while i >= 0 and j >= 0:
         if board[i][j] == 1:
@@ -22,7 +22,7 @@ def is_safe(board, row, col, N):
         i -= 1
         j -= 1
 
-    #check upper right diagonal
+    # check upper right diagonal
     i, j = row, col
     while i >= 0 and j < N:
         if board[i][j] == 1:
@@ -31,6 +31,7 @@ def is_safe(board, row, col, N):
         j += 1
 
     return True
+
 
 def solve_nqueens(board, row, N, solutions):
     """Utilize backtracking to place queens on the board"""
@@ -43,6 +44,7 @@ def solve_nqueens(board, row, N, solutions):
             solve_nqueens(board, row + 1, N, solutions)
             board[row][col] = 0
 
+
 def print_solutions(solutions, N):
     """Print all the solutions"""
     for solution in solutions:
@@ -52,6 +54,7 @@ def print_solutions(solutions, N):
                 if solution[row][col] == 1:
                     formatted_solution.append([row, col])
         print(formatted_solution)
+
 
 def main():
     """Main function to handle input and output"""
@@ -68,7 +71,7 @@ def main():
     if N < 4:
         print("N must be at least 4")
         sys.exit(1)
-    
+
     board = [[0 for _ in range(N)] for _ in range(N)]
     solutions = []
     solve_nqueens(board, 0, N, solutions)
