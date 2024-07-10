@@ -12,12 +12,7 @@ const url = 'https://swapi-api.hbtn.io/api/films/' + movieId + '/';
 
 request(url, (error, response, body) => {
   if (error) {
-    console.error('Error making request:', error);
-    return;
-  }
-  if (response.statusCode !== 200) {
-    console.error('Unexpected status code:', response.statusCode);
-    return;
+    throw error;
   }
 
   const film = JSON.parse(body);
@@ -26,13 +21,7 @@ request(url, (error, response, body) => {
   characters.forEach((characterUrl) => {
     request(characterUrl, (error, response, body) => {
       if (error) {
-        console.error('Error making request:', error);
-        return;
-      }
-
-      if (response.statusCode !== 200) {
-        console.error('Unexpected staus code:', response.statusCode);
-        return;
+        throw error;
       }
 
       const character = JSON.parse(body);
