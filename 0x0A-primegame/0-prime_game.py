@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module containing the game-winner function"""
 
+
 def isWinner(x, nums):
     """Function defining constraints for the game-winner"""
     def count_primes_up_to(n):
