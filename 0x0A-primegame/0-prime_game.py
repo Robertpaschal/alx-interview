@@ -3,9 +3,9 @@
 
 
 def isWinner(x, nums):
-    """Function defining contraints for the game-winner"""
+    """Function defining constraints for the game-winner"""
     def sieve(n):
-        """Return a list of primes up to n using Sieve of Erastothenes"""
+        """Return a list of primes up to n using Sieve of Eratosthenes"""
         is_prime = [True] * (n + 1)
         p = 2
         while p * p <= n:
@@ -17,32 +17,28 @@ def isWinner(x, nums):
 
     def play_game(n):
         """ Simulate the game for given n
-        and return the winner: 'Maria' or 'Ben """
+        and return the winner: 'Maria' or 'Ben' """
         primes = sieve(n)
         if not primes:
             return 'Ben'
         # Boolean list to keep track of available numbers
         available = [True] * (n + 1)
-        current_player = 0   # 0 for Maria, 1 for Ben
+        current_player = 0  # 0 for Maria, 1 for Ben
 
-        while primes:
-            prime = primes[0]
-            # Remove the prime and its multiples
-            for multiple in range(prime, n + 1, prime):
-                available[multiple] = False
+        while True:
+            move_made = False
+            for prime in primes:
+                if available[prime]:
+                    for multiple in range(prime, n + 1, prime):
+                        available[multiple] = False
+                    move_made = True
+                    break
 
-            # remove used prime from the list
-            primes.pop(0)
-
-            # check if thers area any primes left for the next player
-            next_available_primes = [p for p in range(
-                2, n + 1) if available[p] and p in primes]
-            if not next_available_primes:
+            if not move_made:
                 return 'Maria' if current_player == 1 else 'Ben'
 
-            # Switch player
             current_player = 1 - current_player
-        return 'Maria' if current_player == 1 else 'Ben'
+
     if x <= 0 or not nums:
         return None
 
@@ -51,6 +47,7 @@ def isWinner(x, nums):
 
     for n in nums:
         winner = play_game(n)
+        print(f"Game with n={n} won by {winner}")  # Debug print
         if winner == 'Maria':
             maria_wins += 1
         elif winner == 'Ben':
