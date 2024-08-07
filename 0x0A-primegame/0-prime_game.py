@@ -7,7 +7,8 @@
 def isWinner(x, nums):
     """Function defining constraints for the game-winner"""
     def count_primes_up_to(n):
-        """ Returns the number of primes <= n using the Sieve of Eratosthenes. """
+        """ Returns the number of primes <= n using
+        the Sieve of Eratosthenes. """
         if n < 2:
             return 0
         is_prime = [True] * (n + 1)
@@ -17,17 +18,17 @@ def isWinner(x, nums):
                 for multiple in range(start*start, n + 1, start):
                     is_prime[multiple] = False
         return sum(is_prime)
-    
+
     maria_wins = 0
     ben_wins = 0
-    
+
     for n in nums:
         prime_count = count_primes_up_to(n)
         if prime_count % 2 == 1:
             maria_wins += 1
         else:
             ben_wins += 1
-    
+
     if maria_wins > ben_wins:
         return 'Maria'
     elif ben_wins > maria_wins:
