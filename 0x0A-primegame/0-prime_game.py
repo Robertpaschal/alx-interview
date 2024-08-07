@@ -2,6 +2,7 @@
 """ Module containing the game-winner function"""
 
 def isWinner(x, nums):
+    """Function defining contraints for the game-winner"""
     def sieve(n):
         """Return a list of primes up to n using Sieve of Erastothenes"""
         is_prime = [True] * (n + 1)
